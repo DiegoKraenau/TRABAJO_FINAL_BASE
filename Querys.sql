@@ -1,0 +1,2 @@
+use colegioTrilce
+--AQUI VAN LAS 5 QUERYS DE CADA UNO
