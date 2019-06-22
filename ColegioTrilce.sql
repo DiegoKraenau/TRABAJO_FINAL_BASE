@@ -143,7 +143,7 @@ FOREIGN KEY (RUCcolegioANtiguo2) references HistorialAcademico(RUCcolegioAntiguo
 
 create table AlumnoInformacionSalud(
 codigoAlumno8 varchar(20) NOT NULL,
-codigoInformacionSalud2 int NOT NULL check(codigoInformacionSalud2>0),
+codigoInformacionSalud2 int NOT NULL,
 
 FOREIGN KEY (codigoAlumno8) references Alumno(codigoAlumno),
 FOREIGN KEY (codigoInformacionSalud2) references InformacionSalud(codigoInformacionSalud)

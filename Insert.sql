@@ -50,6 +50,11 @@ insert into Alumno values ('U201713177','Mohamed Mateo','Reyes Marin',16,'993188
 insert into Alumno values ('U201616434','Jose Luis','Sanchez Reynoso',14,'948162017','84352731R',NULL,'20516886785','20160516161','3','Secundaria',18.3)
 insert into Alumno values ('U201713616','Jahir Martin','Quispe Tardillo',15,'940242283','71786717Z','30','20516886786','20455375950','4','Secundaria',17.1)
 
+insert into InformacionSalud values ('Asma')
+insert into InformacionSalud values ('TBC')
+insert into InformacionSalud values ('Alergico Penisilina')
+
+
 
 insert into AlumnoInformacionSalud values ('u201710397',1)
 insert into AlumnoInformacionSalud values ('u201710398',2)

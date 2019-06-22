@@ -6,7 +6,7 @@ use colegioTrilce
 --Objetivo: Saber con facilidad los integrantes(cantidad) de una determinada movilidad para evitar problemas al momento de la salida.
 --Pertenece: Proceso de busqueda de alumno
 
-alter PROC findAlumnosMovilidad
+create PROC findAlumnosMovilidad
 @codigoMov as varchar(40),@nombreSede as varchar(40)
 AS
 
@@ -33,7 +33,7 @@ else
 
 
 
-alter proc findPromedioAlumnos
+create proc findPromedioAlumnos
 @nota as int,@nombreSede as varchar(40)
 AS
 begin try
@@ -132,7 +132,7 @@ end
 
 
 
-alter PROC findAsistenciaAlumno
+create PROC findAsistenciaAlumno
 @codigoAlumno as varchar(40)
 AS
 declare @fechaNueva as datetime
@@ -168,21 +168,6 @@ set @letraNueva=SUBSTRING(@codigoAlumno,1,1);
 	END
 	
 
-	--END
-	
-
-	--ELSE
-	--BEGIN
-	--print 'Todavia no empieza la etapa escolar.'
-	--END
-	
-	--END TRY
-	--BEGIN CATCH
-	--print 'No existe un alumno con ese codigo'
-	--END CATCH
-	
-
-	
 	
 	
 
