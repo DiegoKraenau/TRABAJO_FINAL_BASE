@@ -132,3 +132,4 @@ insert into ClaseRealizada values ('A202','c2','M280','u201710398','20190527',1,
 insert into ClaseRealizada values ('A101','c3','M345','U201713177','20190527',3,'9:00','12:00')
 insert into ClaseRealizada values ('A202','c4','M320','U201616434','20190527',2,'13:00','15:00')
 insert into ClaseRealizada values ('A101','c5','M345','U201713616','20190527',2,'12:00','14:00')
+

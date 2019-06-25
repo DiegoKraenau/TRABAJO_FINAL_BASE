@@ -70,57 +70,47 @@ end catch
 
 --Trigger historico o de control 
 --Por:Diego Armando Kraenau Rodriguez
---Objetivo: Tener un historial que alumnos y profesores fueron agregados o modificados con sus fechas correspondientes.
+--Objetivo: Tener un historial que alumnos que fueron agregados a equipos deportivos y luego actualizar la cantidad de integrantes.
 --Pertenece: Proceso de matricula
 
-create table tablaTriggerAgregar(
+
+create table tablaAgregarEquipo(
 codigoAlumno_a varchar(20) NOT NULL,
 nombreALumno_a varchar(30)NOT NULL,
 apellidoAlumno_a varchar(30)NOT NULL,
+equipoAlumno varchar(30) NOT NULL,
 fecha_a datetime
 )
 
-create table tablaTriggerUpdate(
-codigoAlumno_u varchar(20) NOT NULL,
-nombreALumno_u varchar(30)NOT NULL,
-apellidoAlumno_u varchar(30)NOT NULL,
-fecha_u datetime
-)
-
-create table tablaTriggerAgregarDirector(
-codigoAlumno_d varchar(20) NOT NULL,
-nombreALumno_d varchar(30)NOT NULL,
-apellidoAlumno_d varchar(30)NOT NULL,
-fecha_d datetime
-)
 
 
-
-
-create trigger TR_agregadoAlumnos on Alumno after insert 
+create trigger TR_AlumnoEquipo on AlumnoEquipoDeportivo after insert 
 as
 begin
+declare @numero as int
 
-insert into tablaTriggerAgregar (codigoAlumno_a,nombreALumno_a,apellidoAlumno_a,fecha_a) select codigoAlumno,nombreALumno,apellidoAlumno,getdate() from inserted
+select @numero=codigoDeporte from inserted
+
+if(@numero>0)
+begin
+insert into tablaAgregarEquipo (codigoAlumno_a,nombreALumno_a,apellidoAlumno_a,equipoAlumno,fecha_a) 
+select codigoAlumno,nombreALumno,apellidoAlumno,nombreDeporte,getdate() from inserted 
+inner join Alumno on Alumno.codigoAlumno=inserted.codigoAlumno4
+inner join EquipoDeportivo on EquipoDeportivo.codigoDeporte=inserted.codigoDeporte
+
+
+update EquipoDeportivo set cantidadIntegrantes=cantidadIntegrantes-1 where codigoDeporte=@numero
 
 end
+else 
 
-create trigger TR_updateAlumnos on Alumno after update 
-as
-begin
+print 'Integrantes llenos'
 
-insert into tablaTriggerUpdate (codigoAlumno_u,nombreALumno_u,apellidoAlumno_u,fecha_u) select codigoAlumno,nombreALumno,apellidoAlumno,getdate() from inserted
 
 end
 
 
-create trigger TR_agregadoDirector on Director after insert 
-as
-begin
 
-insert into tablaTriggerAgregarDirector (codigoAlumno_d,nombreALumno_d,apellidoAlumno_d,fecha_d) select codigoDirector,nombreDirector,apellidoDirector,getdate() from inserted
-
-end
 
 
 --Procedimiento almacenado que genere un reporte usando un CURSOR, IF O ELSE y maneja errores
